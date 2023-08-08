@@ -15,8 +15,8 @@
         parent.insertBefore(newElement, targetElement.nextSibling);
     }
 }
-            const labelNums = ["Antimatter","test","Total Antimatter","Infinity Power","Time Shards","Time Shard Threshold","Tickspeed Upgrades from TDs","Infinity Points","1/10 IPs","Eternity Points","First Dimensions Sacrificed","Soft Resets","Galaxies","Infinities","1/5 Infinities","Banked Infinities","Eternities","Tickspeed","Tickspeed Cost","Tickspeed Cost Increase","Tickspeed Cost Increase Increase","Tickspeed Cost Increase Increase Decrease Cost","Dimension Cost Increase Increase","Dimension Cost Increase Increase Decrease Cost","Time Played","Time Played in Infinity","Fastest Infinity","Time Played In Eternity","Fastest Eternity","Challenge 2 power","Challenge 3 power","Matter","Infinity Challenges Unlocked","Challenge Goal","Infinity Challenge 4 tier","Infinity Challenge 3 Reward","IP Multiplier","IP Multiplier Cost","EP Multiplier","EP Multiplier Cost","Passive IP Gain","Passive IP Gain Cost","EC target","Unlocked EC","Current EC","EC8 ID upgrades remaining","EC8 Replicanti upgrades remaining","Last Save Time","Version","Spreading Cancer Progress","Auto-Sacrifice Threshold","Highest IP/min in a Fully Automatic Infinity","Fastest Fully Automatic Infinity"]
-            const varNames =  ["money","tickspeed","totalmoney","infinityPower","timeShards","tickThreshold","totalTickGained",                                "infinityPoints","partInfinityPoint","infinitiedBank","eternityPoints","sacrificed","resets","galaxies","infinitied","partInfinitied","eternities",                  "tickspeed","tickSpeedCost","tickspeedMultiplier",     "tickSpeedMultDecrease","tickSpeedMultDecreaseCost","dimensionMultDecrease","dimensionMultDecreaseCost",                                                                "totalTimePlayed","thisInfinityTime","bestInfinityTime","thisEternity","bestEternity",                  "chall2Pow","chall3Pow","matter",                "postChallUnlocked","challengeTarget","postC4Tier","postC3Reward",                                        "infMult","infMultCost","epmult","epmultCost",                            "offlineProd","offlineProdCost",         "eternityChallGoal","eternityChallUnlocked","currentEternityChall","eterc8ids","eterc8repl",           "lastUpdate","version","spreadingCancer","autoSacrifice","autoIP","autoTime"]
+            const labelNums = ["Antimatter","Total Antimatter","Infinity Power","Time Shards","Time Shard Threshold","Tickspeed Upgrades from TDs","Infinity Points","1/10 IPs","Eternity Points","First Dimensions Sacrificed","Soft Resets","Galaxies","Infinities","1/5 Infinities","Banked Infinities","Eternities","Tickspeed","Tickspeed Cost","Tickspeed Cost Increase","Tickspeed Cost Increase Increase","Tickspeed Cost Increase Increase Decrease Cost","Dimension Cost Increase Increase","Dimension Cost Increase Increase Decrease Cost","Time Played","Time Played in Infinity","Fastest Infinity","Time Played In Eternity","Fastest Eternity","Challenge 2 power","Challenge 3 power","Matter","Infinity Challenges Unlocked","Challenge Goal","Infinity Challenge 4 tier","Infinity Challenge 3 Reward","IP Multiplier","IP Multiplier Cost","EP Multiplier","EP Multiplier Cost","Passive IP Gain","Passive IP Gain Cost","EC target","Unlocked EC","Current EC","EC8 ID upgrades remaining","EC8 Replicanti upgrades remaining","Last Save Time","Version","Spreading Cancer Progress","Auto-Sacrifice Threshold","Highest IP/min in a Fully Automatic Infinity","Fastest Fully Automatic Infinity"]
+            const varNames =  ["money","totalmoney","infinityPower","timeShards","tickThreshold","totalTickGained",                                "infinityPoints","partInfinityPoint","infinitiedBank","eternityPoints","sacrificed","resets","galaxies","infinitied","partInfinitied","eternities",                  "tickspeed","tickSpeedCost","tickspeedMultiplier",     "tickSpeedMultDecrease","tickSpeedMultDecreaseCost","dimensionMultDecrease","dimensionMultDecreaseCost",                                                                "totalTimePlayed","thisInfinityTime","bestInfinityTime","thisEternity","bestEternity",                  "chall2Pow","chall3Pow","matter",                "postChallUnlocked","challengeTarget","postC4Tier","postC3Reward",                                        "infMult","infMultCost","epmult","epmultCost",                            "offlineProd","offlineProdCost",         "eternityChallGoal","eternityChallUnlocked","currentEternityChall","eterc8ids","eterc8repl",           "lastUpdate","version","spreadingCancer","autoSacrifice","autoIP","autoTime"]
             const tierNames = ["first","second","third","fourth","fifth","sixth","seventh","eight"]
             const dimVals = ["Cost","Amount","Pow","Bought"]
             const iDimVals = ["cost","baseAmount","amount","power"]
@@ -36,13 +36,17 @@
                 for (let i=0;i<varNames.length;i++) { //main numerical values
                     const label = document.createElement("div")
                     label.innerHTML = labelNums[i]
+                    label.style.display = "inline-block"
                     const field = document.createElement("input")
                     field.type = "text"
                     field.id = "b"+i
-                    field.style.width = "95%"
+                    field.style.width = "60%"
                     insertAfter(label,carry)
                     insertAfter(field,label)
                     carry = field
+                    const br = document.createElement("br")
+                    insertAfter(br,field)
+                    carry = br
                 }
                 for (let i=0;i<8;i++) {
                     let row = document.getElementById("dt").insertRow(i+1)
@@ -406,11 +410,14 @@
     </head>
     <body onload="init()">
         <p>This tool is NOT WORKING correctly yet, and is a copy of <a href="https://1234abcdcba4321.github.io/AD-save-editor/">this tool</a>.</p>
-        <p><a href="alternate2.html"> Alternate solution 2</a></p>
+        <p><a href="alternate2.html"> Alternate solution (full text)</a></p>
+        <p><h2 id="sectionMenu">Go to section :</h2> <a href="#mainNumValues">Main numerical values</a> - <a href="#dimValues">Dimensions</a> - <a href="#infDimValues">Infinity Dimensions</a> - <a href="#timeDimensionsValues">Time Dimensions</a> - <a href="#achValues">Achievements</a> - <a href="#achSecretValues">Secret Achievements</a> - <a href="#challValues">Challenges</a> - <a href="#autoBValues">Autobuyers</a> - <a href="#repliValues">Replicanti</a></p>
         <p style="margin-bottom: 1px;">Textbox to input the save :</p>
-        <textarea cols="150" placeholder="Your savefile" id="save"></textarea><br>
+        <textarea cols="150" rows="3" placeholder="Your savefile" id="save"></textarea><br>
         <button onclick="load()">Load save</button> <button onclick="save()">Save save</button> <button onclick="copy()">Copy save</button>
+        <h1 id="mainNumValues">Main numerical values</h1>
         <br id="base">
+        <h1 id="dimValues">Dimensions</h1>
         <table border="2px solid green" id="dt">
             <thead>
                 <tr>
@@ -423,6 +430,7 @@
                 </tr>
             </thead>
         </table>
+        <h1 id="infDimValues">Infinity Dimensions</h1>
         <table border="2px solid yellow" id="dit">
             <thead>
                 <tr>
@@ -436,6 +444,7 @@
                 </tr>
             </thead>
         </table>
+        <h1 id="timeDimensionsValues">Time Dimensions</h1>
         <table border="2px solid yellow" id="dtt">
             <thead>
                 <tr>
@@ -447,8 +456,9 @@
                 </tr>
             </thead>
         </table>
-        <div id="base2">Achievements</div>
-        <div id="base2bis">Secret Achievements</div>
+        <div id="base2"><h1 id="achValues">Achievements</h1></div>
+        <div id="base2bis"><h1 id="achSecretValues">Secret Achievements</h1></div>
+        <h1 id="challValues">Challenges</h1>
         <select id="cct">
             <option value="c">Normal</option>
             <option value="p">Infinity</option>
@@ -463,6 +473,7 @@
                 </tr>
             </thead>
         </table>
+        <h1 id="autoBValues">Autobuyers</h1>
         <table border="2px solid black" id="cat">
             <thead>
                 <tr>
@@ -482,7 +493,7 @@
             <option value="time">time</option>
             <option value="relative">X times last crunch</option>
         </select>
-        <b>Replicanti</b><br>
+        <b><h1 id="repliValues">Replicanti</h1></b><br>
         Unlocked? <input type="checkbox" id="rce"></input>
         <br id="base4">
         Purchased Studies:<br id="base3">
