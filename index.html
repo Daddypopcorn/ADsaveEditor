@@ -1,7 +1,6 @@
-
-
 <html>
     <head>
+        <link rel="stylesheet" href="style.css">
         <script>
             function insertAfter(newElement,targetElement) {
     // target is what you want it to go after. Look for this elements parent.
@@ -16,8 +15,8 @@
         parent.insertBefore(newElement, targetElement.nextSibling);
     }
 }
-            const labelNums = ["Antimatter","Total Antimatter","Infinity Power","Time Shards","Time Shard Threshold","Tickspeed Upgrades from TDs","Infinity Points","1/10 IPs","Eternity Points","First Dimensions Sacrificed","Soft Resets","Galaxies","Infinities","1/5 Infinities","Banked Infinities","Eternities","Tickspeed","Tickspeed Cost","Tickspeed Cost Increase","Tickspeed Cost Increase Increase","Tickspeed Cost Increase Increase Decrease Cost","Dimension Cost Increase Increase","Dimension Cost Increase Increase Decrease Cost","Time Played","Time Played in Infinity","Fastest Infinity","Time Played In Eternity","Fastest Eternity","Challenge 2 power","Challenge 3 power","Matter","Infinity Challenges Unlocked","Challenge Goal","Infinity Challenge 4 tier","Infinity Challenge 3 Reward","IP Multiplier","IP Multiplier Cost","EP Multiplier","EP Multiplier Cost","Passive IP Gain","Passive IP Gain Cost","EC target","Unlocked EC","Current EC","EC8 ID upgrades remaining","EC8 Replicanti upgrades remaining","Last Save Time","Version","Spreading Cancer Progress","Auto-Sacrifice Threshold","Highest IP/min in a Fully Automatic Infinity","Fastest Fully Automatic Infinity"]
-            const varNames =  ["money","totalmoney","infinityPower","timeShards","tickThreshold","totalTickGained",                                "infinityPoints","partInfinityPoint","infinitiedBank","eternityPoints","sacrificed","resets","galaxies","infinitied","partInfinitied","eternities",                  "tickspeed","tickSpeedCost","tickspeedMultiplier",     "tickSpeedMultDecrease","tickSpeedMultDecreaseCost","dimensionMultDecrease","dimensionMultDecreaseCost",                                                                "totalTimePlayed","thisInfinityTime","bestInfinityTime","thisEternity","bestEternity",                  "chall2Pow","chall3Pow","matter",                "postChallUnlocked","challengeTarget","postC4Tier","postC3Reward",                                        "infMult","infMultCost","epmult","epmultCost",                            "offlineProd","offlineProdCost",         "eternityChallGoal","eternityChallUnlocked","currentEternityChall","eterc8ids","eterc8repl",           "lastUpdate","version","spreadingCancer","autoSacrifice","autoIP","autoTime"]
+            const labelNums = ["Antimatter","test","Total Antimatter","Infinity Power","Time Shards","Time Shard Threshold","Tickspeed Upgrades from TDs","Infinity Points","1/10 IPs","Eternity Points","First Dimensions Sacrificed","Soft Resets","Galaxies","Infinities","1/5 Infinities","Banked Infinities","Eternities","Tickspeed","Tickspeed Cost","Tickspeed Cost Increase","Tickspeed Cost Increase Increase","Tickspeed Cost Increase Increase Decrease Cost","Dimension Cost Increase Increase","Dimension Cost Increase Increase Decrease Cost","Time Played","Time Played in Infinity","Fastest Infinity","Time Played In Eternity","Fastest Eternity","Challenge 2 power","Challenge 3 power","Matter","Infinity Challenges Unlocked","Challenge Goal","Infinity Challenge 4 tier","Infinity Challenge 3 Reward","IP Multiplier","IP Multiplier Cost","EP Multiplier","EP Multiplier Cost","Passive IP Gain","Passive IP Gain Cost","EC target","Unlocked EC","Current EC","EC8 ID upgrades remaining","EC8 Replicanti upgrades remaining","Last Save Time","Version","Spreading Cancer Progress","Auto-Sacrifice Threshold","Highest IP/min in a Fully Automatic Infinity","Fastest Fully Automatic Infinity"]
+            const varNames =  ["money","tickspeed","totalmoney","infinityPower","timeShards","tickThreshold","totalTickGained",                                "infinityPoints","partInfinityPoint","infinitiedBank","eternityPoints","sacrificed","resets","galaxies","infinitied","partInfinitied","eternities",                  "tickspeed","tickSpeedCost","tickspeedMultiplier",     "tickSpeedMultDecrease","tickSpeedMultDecreaseCost","dimensionMultDecrease","dimensionMultDecreaseCost",                                                                "totalTimePlayed","thisInfinityTime","bestInfinityTime","thisEternity","bestEternity",                  "chall2Pow","chall3Pow","matter",                "postChallUnlocked","challengeTarget","postC4Tier","postC3Reward",                                        "infMult","infMultCost","epmult","epmultCost",                            "offlineProd","offlineProdCost",         "eternityChallGoal","eternityChallUnlocked","currentEternityChall","eterc8ids","eterc8repl",           "lastUpdate","version","spreadingCancer","autoSacrifice","autoIP","autoTime"]
             const tierNames = ["first","second","third","fourth","fifth","sixth","seventh","eight"]
             const dimVals = ["Cost","Amount","Pow","Bought"]
             const iDimVals = ["cost","baseAmount","amount","power"]
@@ -83,7 +82,7 @@
                     }
                 }
                 carry = document.getElementById("base2")
-                for (let i=0;i<24;i++) { //achievements
+                for (let i=0;i<18;i++) { //achievements
                     for (let j=0;j<8;j++) {
                         const ach = document.createElement("input")
                         ach.type = "checkbox"
@@ -94,6 +93,19 @@
                     const br = document.createElement("br")
                     insertAfter(br,carry)
                     carry = br
+                }
+                carry2 = document.getElementById("base2bis")
+                for (let i=0;i<4;i++){ //secret achievements
+                    for (let j=0;j<8;j++){
+                        const achscrt = document.createElement("input")
+                        achscrt.type = "checkbox"
+                        achscrt.id = "a2"+i+j
+                        insertAfter(achscrt,carry2)
+                        carry2 = achscrt
+                    }
+                    const br2 = document.createElement("br")
+                    insertAfter(br2,carry2)
+                    carry2 = br2
                 }
                 for (let i=0;i<19;i++) { //challenges
                     const row = document.getElementById("ct").insertRow(i+1)
@@ -251,8 +263,11 @@
                 for (let i=0;i<4;i++) {
                     for (let j=0;j<4;j++) document.getElementById("dt"+i+j).value = file["timeDimension"+(i+1)][tDimVals[j]]
                 }
-                for (let i=0;i<12;i++) {
+                for (let i=0;i<18;i++) {
                     for (let j=0;j<8;j++) document.getElementById("a"+i+j).checked = file.achievements.includes("r"+(i+1)+(j+1))
+                }
+                for (let i=0;i<4;i++) {
+                    for (let j=0;j<8;j++) document.getElementById("a2"+i+j).checked = file.achievements.includes("s"+(i+1)+(j+1))
                 }
                 document.getElementById("cct").value = file.currentChallenge.includes("postc")?"p":"c"
                 if (document.getElementById("cct").value=="p") document.getElementById("ccn").value = file.currentChallenge.replace("postc","")
@@ -316,9 +331,14 @@
                     for (let j=0;j<4;j++) file["timeDimension"+(i+1)][tDimVals[j]] = stringFilter(document.getElementById("dt"+i+j).value)
                 }
                 file.achievements = []
-                for (let i=0;i<12;i++) {
+                for (let i=0;i<18;i++) {
                     for (let j=0;j<8;j++) {
                         if (document.getElementById("a"+i+j).checked) file.achievements.push("r"+(i+1)+(j+1))
+                    }
+                }
+                for (let i=0;i<4;i++) {
+                    for (let j=0;j<8;j++) {
+                        if (document.getElementById("a2"+i+j).checked) file.achievements.push("s"+(i+1)+(j+1))
                     }
                 }
                 if (document.getElementById("cct").value=="p") file.currentChallenge = "postc"+document.getElementById("ccn").value
@@ -374,13 +394,22 @@
                 document.getElementById("save").value = btoa(JSON.stringify(file))
                 localStorage.setItem("ADeditor",document.getElementById("save").value)
             }
+
+            function copy() {
+                var textToCopy = document.getElementById("save")
+                textToCopy.select()
+                textToCopy.setSelectionRange(0,99999)
+                navigator.clipboard.writeText(textToCopy.value)
+            }
         </script>
         <title>AD Save Editor</title>
     </head>
     <body onload="init()">
-        <p>This tool is a copy from <a href="https://1234abcdcba4321.github.io/AD-save-editor/">https://1234abcdcba4321.github.io/AD-save-editor/</a>. I am still working on it. NOT WORKING.</p>
+        <p>This tool is NOT WORKING correctly yet, and is a copy of <a href="https://1234abcdcba4321.github.io/AD-save-editor/">this tool</a>.</p>
+        <p><a href="alternate2.html"> Alternate solution 2</a></p>
+        <p style="margin-bottom: 1px;">Textbox to input the save :</p>
         <textarea cols="150" placeholder="Your savefile" id="save"></textarea><br>
-        <button onclick="load()">Load save</button> <button onclick="save()">Save save</button>
+        <button onclick="load()">Load save</button> <button onclick="save()">Save save</button> <button onclick="copy()">Copy save</button>
         <br id="base">
         <table border="2px solid green" id="dt">
             <thead>
@@ -419,6 +448,7 @@
             </thead>
         </table>
         <div id="base2">Achievements</div>
+        <div id="base2bis">Secret Achievements</div>
         <select id="cct">
             <option value="c">Normal</option>
             <option value="p">Infinity</option>

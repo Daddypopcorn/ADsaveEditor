@@ -1,0 +1,53 @@
+body {
+    background-color: lightgray;
+}
+textarea {
+    outline: none;
+    resize: none;
+    background-color: #222;
+    color: #fff;
+    font-family: "Regular";
+}
+.betterarea {
+        display: block;
+        width: 70%;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+}
+.betterarea2 {
+    display: block;
+    width: 40%;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+button {
+    background-color: #fff;
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+h1 {
+    color: rgb(71, 71, 71);
+    font-family: Arial;
+    margin: 5px
+}
+h2 {
+    color: #fff;
+    margin: 13px;
+    font-family: monospace;
+}
+footer {
+    color: #fff;
+    font-family: monospace;
+    margin-bottom: 20px;
+    font-size: 16px;
+}

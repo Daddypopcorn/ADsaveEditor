@@ -1,0 +1,61 @@
+
+
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            // Constantes
+            const varNames =  ["money","totalmoney","infinityPower"]
+            
+            function loader(){
+                // La variable locale ADeditor correspond au texte brut de la save
+                localStorage.setItem("ADeditor",document.getElementById("save").value)
+                file = JSON.parse(atob(document.getElementById("save").value)) // file = conversion from b64 to JSON
+                var pretty = JSON.stringify(file, undefined, 2) // Format for indentation
+                document.getElementById("textDecode").value = pretty // Paste new format into textarea
+                // CONTINUE HERE
+                var listKeys = Headers(file,'#tableKeys');
+                window.alert(listKeys)
+                //for (let i=0;i<varNames.length;i++) document.getElementById("b"+i).value = file[varNames[i]];
+                //window.alert("file[varNames[i]]");
+            } 
+            function saver(){
+                document.getElementById("save").value = btoa(document.getElementById("textDecode").value)
+            }
+            // Function headers
+            function Headers(list, selector) {
+                var columns = [];
+                var header = $('<tr/>');
+             
+                for (var i = 0; i < list.length; i++) {
+                    var row = list[i];
+                    
+                    for (var k in row) {
+                        if ($.inArray(k, columns) == -1) {
+                            columns.push(k);
+                            
+                            // Creating the header
+                            header.append($('<th/>').html(k));
+                        }
+                    }
+                }
+                // Appending the header to the table
+                $(selector).append(header);
+                    return columns;
+            }      
+        </script>
+        <title>AD Save Editor</title>
+    </head>
+    <body>
+        <p>This tool is NOT WORKING yet.</p>
+        <a href="index.html">Alternate solution 2</a><a href="https://1234abcdcba4321.github.io/AD-save-editor/" style="color: brown;"> (Copy of https://1234abcdcba4321.github.io/AD-save-editor/)</a><br><br>
+        <textarea class="betterarea" placeholder="Paste your Save here" id="save" rows="7" cols="55"></textarea><br>
+        <button onclick="loader()">Load my save</button>
+        <button onclick="saver()">Generate save</button><br>
+        <textarea class="betterarea" placeholder="Base64 uncrypted" id="textDecode" rows="20" cols="55"></textarea><br>
+        <table id="tableKeys">
+
+        </table>
+    </body>
+</html>
